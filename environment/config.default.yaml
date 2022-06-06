@@ -1,0 +1,34 @@
+version: 0.0.1
+debug: False
+project_name: meteo-monitoring
+
+host: 0.0.0.0
+port: 8000
+
+lb_url: http://localhost:4000
+
+api_url: "https://api.weather.yandex.ru/v2/forecast"
+api_key: "2149c06f-a91f-41c0-accb-c0bff921c8d9"
+extra : 'False'
+coordinates:
+  lat : '20'
+  lon : '20'
+
+
+monitoring_intervals:
+  controllers: 15 # [с]
+
+logger:
+  version: 1
+  formatters:
+    default:
+      format: "%(levelname)s: [%(name)s - %(asctime)s] \t%(message)s"
+      datefmt: "%Y-%m-%d %H:%M:%S"
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: default
+  loggers:
+    monitoring:
+      handlers: ["console"]
+      level: DEBUG
